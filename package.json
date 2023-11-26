@@ -1,0 +1,14 @@
+{
+  "name": "docker-node-postgres",
+  "version": "1.0.0",
+  "description": "Node js y postgres by: Luis y Lautaro",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  }
+}
+

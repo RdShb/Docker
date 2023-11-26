@@ -1,0 +1,36 @@
+# version 3 
+version: '3'
+# se establecen los servicios de la aplicacion nodejs y postgreSQL
+services:
+# Se construye el servicio app basado en nuestro dockerfile en el directorio actual
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # se mapea el puerto 3000 del anfitrion con el puerto 3000 del contenedor
+    ports:
+      - "3000:3000"
+    # Y depende del servicio DataBase para funcionar
+    depends_on:
+      - db
+    # Declara las variables de entorno a utilizar 
+    environment:
+      PGHOST: db
+      PGUSER: luis
+      PGPASSWORD: lautaro
+      PGDATABASE: basededatos
+      PGPORT: 5432
+
+  #Se inicializa el servicio db para la aplicacion
+  db:
+  # Basado en la ultima version de la imagen postgres
+    image: postgres:latest
+    # Declara las variables de entorno usuario, contraseña y database
+    environment:
+      POSTGRES_USER: luis
+      POSTGRES_PASSWORD: lautaro
+      POSTGRES_DB: basededatos
+    #  Mapeando el puerto 5432 del host con el 5432 del contenedor
+    ports:
+      - "5432:5432"
+
